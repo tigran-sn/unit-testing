@@ -1,0 +1,13 @@
+<button
+  href="/"
+  (click)="loading = !loading"
+  dfButton
+  [loading]="loading"
+  [disabled]="loading"
+>
+  Load Data
+</button>
+<hr />
+<button dfButton>+</button>
+<button style="margin-left: 12px" dfButton appearance="stroked">-</button>
+<router-outlet></router-outlet>
