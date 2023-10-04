@@ -1,27 +1,34 @@
-# AngularTestingCourse
+# Welcome to Conscious Angular Testing
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.2.
+The course ["Conscious Angular Testing"](https://courses.decodedfrontend.io/courses/conscious-angular-testing) is designed for developers who already have experience in Angular but have minimal or no experience in writing tests. This course focuses on bridging that gap by providing comprehensive insights and practical skills for effective and conscious test writing in Angular.
 
-## Development server
+![alt text](https://import.cdn.thinkific.com/420070%2Fcustom_site_themes%2Fid%2FZ5tXfjBZSyykzhjmXhUD_Image_Angular_testing%402x.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Course Projects
 
-## Code scaffolding
+The course project consists of 2 sub-projects:
+- *ui-kit* - A components library for the course section **Angular Testing Basics**.
+- *ui-kit-demoapp* - The playground for the components library.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The list of projects will be extended in the future. Stay tuned!
 
-## Build
+## Start Learning
+*Note! The first 2 sections are theoretical, and there is nothing to code there. Perform the following steps only when you start with the 3rd course section:*
+- Clone the course repository.
+- Run `npm install` in the terminal to install dependencies.
+- Run `git checkout -b my-learning origin/initial-project-state` in the terminal to switch to the course's initial state and create a personal branch for learning.
+- Enjoy the course. ["Click to start with the 1st lesson in the 3rd section"](https://courses.decodedfrontend.io/courses/take/conscious-angular-testing/lessons/47025887-testing-simple-util-functions) ;)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Useful Commands
+- `npm run test --project ui-kit` to run tests for the component library.
+- `npm run build --project ui-kit -- --watch` to run component library build in watch mode.
+- `npm run start` to start the **ui-kit-demoapp**, which is used as a showcase for the library's components, directives, pipes, etc.
 
-## Running unit tests
+## Important Notes
+Please try to stick to your "learning" git branch. Be careful when merging the `main` branch into your learning one, because if there are mistakes in the course, bug fixes might override the git history of the `main` branch, and you might lose your changes. Usually, you won't need to do this, but if you need to merge, please create a backup beforehand.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Further Help
 
-## Running end-to-end tests
+If you have any questions, issues, or suggestions, you can write me an email at [dmytro@decodedfrontend.io](mailto:dmytro@decodedfrontend.io) or create an issue here on GitHub.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Thank you for choosing my course! Happy coding :)
