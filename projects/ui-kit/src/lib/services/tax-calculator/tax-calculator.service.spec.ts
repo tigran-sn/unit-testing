@@ -12,11 +12,12 @@ describe('TaxCalculator Service', () => {
   beforeEach(() => {
     testCountries = { de: { name: 'Germany', vat: 19 } };
     TestBed.configureTestingModule({
-      providers: [{ provide: COUNTRIES, useValue: testCountries }],
+      providers: [
+        { provide: COUNTRIES, useValue: testCountries },
+        // TaxCalculatorService, // NOTE: Need only in case where there is no `providedIn: 'root'` in the service
+      ],
     });
-    TestBed.runInInjectionContext(() => {
-      service = new TaxCalculatorService();
-    });
+    service = TestBed.inject(TaxCalculatorService);
   });
 
   describe('TaxCalculatorService: Error handling', () => {
