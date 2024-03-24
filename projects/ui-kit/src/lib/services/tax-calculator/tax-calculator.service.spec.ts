@@ -1,14 +1,22 @@
 import {
   TaxCalculatorService,
   Country as Countries,
+  COUNTRIES,
 } from './tax-calculator.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('TaxCalculator Service', () => {
   let service: TaxCalculatorService;
+  TestBed;
   let testCountries: Countries;
   beforeEach(() => {
     testCountries = { de: { name: 'Germany', vat: 19 } };
-    service = new TaxCalculatorService(testCountries);
+    TestBed.configureTestingModule({
+      providers: [{ provide: COUNTRIES, useValue: testCountries }],
+    });
+    TestBed.runInInjectionContext(() => {
+      service = new TaxCalculatorService();
+    });
   });
 
   describe('TaxCalculatorService: Error handling', () => {
