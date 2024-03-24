@@ -1,9 +1,14 @@
-import { TaxCalculatorService } from './tax-calculator.service';
+import {
+  TaxCalculatorService,
+  Country as Countries,
+} from './tax-calculator.service';
 
 describe('TaxCalculator Service', () => {
   let service: TaxCalculatorService;
+  let testCountries: Countries;
   beforeEach(() => {
-    service = new TaxCalculatorService();
+    testCountries = { de: { name: 'Germany', vat: 19 } };
+    service = new TaxCalculatorService(testCountries);
   });
 
   describe('TaxCalculatorService: Error handling', () => {
@@ -13,17 +18,17 @@ describe('TaxCalculator Service', () => {
       );
     });
     it('should throw an error when the price is less than 0', () => {
-      expect(() => service.calculateVAT(-100, 'uk')).toThrowError(
+      expect(() => service.calculateVAT(-100, 'de')).toThrowError(
         /not be a negative number/
       );
     });
   });
   it('should return 0, if "isB2B" is true', () => {
-    const result = service.calculateVAT(100, 'uk', true);
+    const result = service.calculateVAT(100, 'de', true);
     expect(result).toBe(0);
   });
   it('should calculate the VAT', () => {
-    const result = service.calculateVAT(100, 'uk');
-    expect(result).toBe(20);
+    const result = service.calculateVAT(100, 'de');
+    expect(result).toBe(19);
   });
 });
