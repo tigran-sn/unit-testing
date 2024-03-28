@@ -9,6 +9,7 @@ describe('ButtonComponent', () => {
       imports: [ButtonModule],
     });
     fixture = TestBed.createComponent(ButtonComponent);
+    fixture.detectChanges(); // Initial CD
   });
 
   it('should create the component', () => {
