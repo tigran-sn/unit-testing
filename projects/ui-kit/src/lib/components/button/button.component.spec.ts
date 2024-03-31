@@ -28,7 +28,6 @@ describe('ButtonComponent', () => {
     it('should have solid appearance by default', () => {
       expect(el.classes['solid-button']).toBe(true);
       expect(el.nativeElement.classList.contains('solid-button')).toBe(true);
-      expect(el.nativeElement).toContain('solid-button');
       expect(el.query(By.css('.solid-button'))).toBeDefined();
     });
 
