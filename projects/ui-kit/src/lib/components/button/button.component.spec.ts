@@ -3,16 +3,19 @@ import { ButtonComponent } from './button.component';
 import { ButtonModule } from './button.module';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { BUTTON_CLASSES } from './button.component';
 
 describe('ButtonComponent', () => {
   let fixture: ComponentFixture<ButtonComponent>;
   let el: DebugElement;
+  let component: ButtonComponent;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ButtonModule],
     });
     fixture = TestBed.createComponent(ButtonComponent);
     el = fixture.debugElement;
+    component = fixture.componentInstance;
     fixture.detectChanges(); // Initial CD
   });
 
@@ -26,21 +29,23 @@ describe('ButtonComponent', () => {
 
   describe('ButtonComponent appearance', () => {
     it('should have solid appearance by default', () => {
-      expect(el.classes['solid-button']).toBe(true);
-      expect(el.nativeElement.classList.contains('solid-button')).toBe(true);
-      expect(el.query(By.css('.solid-button'))).toBeDefined();
+      expect(el.classes[BUTTON_CLASSES.solid]).toBe(true);
+      expect(el.nativeElement.classList.contains(BUTTON_CLASSES.solid)).toBe(
+        true
+      );
+      expect(el.query(By.css(BUTTON_CLASSES.solid))).toBeDefined();
     });
 
     it('should have stroked appearance', () => {
-      fixture.componentInstance.appearance = 'stroked';
+      component.appearance = 'stroked';
       fixture.detectChanges();
-      expect(el.query(By.css('.stroked-button'))).toBeDefined();
+      expect(el.query(By.css(BUTTON_CLASSES.stroked))).toBeDefined();
     });
 
     it('should have dashed appearance', () => {
-      fixture.componentInstance.appearance = 'dashed';
+      component.appearance = 'dashed';
       fixture.detectChanges();
-      expect(el.query(By.css('.dashed-button'))).toBeDefined();
+      expect(el.query(By.css(BUTTON_CLASSES.dashed))).toBeDefined();
     });
   });
 
