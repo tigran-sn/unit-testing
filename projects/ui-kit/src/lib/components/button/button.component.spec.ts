@@ -21,7 +21,7 @@ describe('ButtonComponent', () => {
     // expect(fixture.nativeElement.querySelector('.button-label')).toBeDefined();
 
     // Will work on every platform that Angular supports
-    expect(el.query(By.css('.button-label'))).toBeDefined();
+    expect(el.query(By.css('[data-testId="button-label"]'))).toBeDefined();
   });
 
   describe('ButtonComponent appearance', () => {
@@ -45,20 +45,16 @@ describe('ButtonComponent', () => {
   });
 
   describe('ButtonComponent loading state', () => {
-    it('should not have loading state by default', () => {
-      expect(el.query(By.css('.loader'))).toBeNull();
-    });
-
-    it('should have loading state', () => {
-      fixture.componentInstance.loading = true;
+    it('should show loader icon on "loading" state', () => {
+      el.componentInstance.loading = true;
       fixture.detectChanges();
-      expect(el.query(By.css('.loader'))).toBeDefined();
-    });
+      let loader = el.query(By.css('[data-testingId="loader"]'));
+      expect(loader).not.toBeNull();
 
-    it('should have loading state', () => {
-      fixture.componentInstance.loading = false;
+      el.componentInstance.loading = false;
       fixture.detectChanges();
-      expect(el.query(By.css('.loader'))).toBeNull();
+      loader = el.query(By.css('[data-testingId="loader"]'));
+      expect(loader).toBeNull();
     });
   });
 });
