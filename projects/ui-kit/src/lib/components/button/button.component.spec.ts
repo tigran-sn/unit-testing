@@ -37,12 +37,14 @@ describe('ButtonComponent', () => {
     });
 
     it('should have stroked appearance', () => {
+      // The HostBindings will be checked as part of CD cycle, that's why we don't nedd to use setInput here
       component.appearance = 'stroked';
       fixture.detectChanges();
       expect(el.query(By.css(BUTTON_CLASSES.stroked))).toBeDefined();
     });
 
     it('should have dashed appearance', () => {
+      // The HostBindings will be checked as part of CD cycle, that's why we don't nedd to use setInput here
       component.appearance = 'dashed';
       fixture.detectChanges();
       expect(el.query(By.css(BUTTON_CLASSES.dashed))).toBeDefined();
@@ -51,12 +53,22 @@ describe('ButtonComponent', () => {
 
   describe('ButtonComponent loading state', () => {
     it('should show loader icon on "loading" state', () => {
-      el.componentInstance.loading = true;
+      /*
+        Skipping the part, where the component is marked as dirty and also it is not triggering ngOnChanges lifecycle hook
+        That's why we we need to use "setInput"
+        "setInput" is marking the component as dirty and causes the "ngOnChanges" to be executed
+      */
+      fixture.componentRef.setInput('loading', true);
       fixture.detectChanges();
       let loader = el.query(By.css('[data-testingId="loader"]'));
       expect(loader).not.toBeNull();
 
-      el.componentInstance.loading = false;
+      /*
+        Skipping the part, where the component is marked as dirty and also it is not triggering ngOnChanges lifecycle hook
+        That's why we we need to use "setInput"
+        "setInput" is marking the component as dirty and causes the "ngOnChanges" to be executed
+      */
+      fixture.componentRef.setInput('loading', false);
       fixture.detectChanges();
       loader = el.query(By.css('[data-testingId="loader"]'));
       expect(loader).toBeNull();
