@@ -76,12 +76,23 @@ describe('ButtonComponent', () => {
   });
 
   describe('Disabled state', () => {
-    it('should apply neccessary attrinutes to component host', () => {
+    beforeEach(() => {
       fixture.componentRef.setInput('disabled', true);
       fixture.detectChanges();
+    });
+
+    it('should apply neccessary attrinutes to component host', () => {
       expect(el.nativeElement.classList).toContain('disabled');
       expect(el.nativeElement.getAttribute('disabled')).not.toBeNull();
       expect(el.nativeElement.getAttribute('tabIndex')).toBe('-1');
+    });
+
+    it('Should prevent default behaviour', () => {
+      const clickEvent = new PointerEvent('click', {
+        cancelable: true,
+      });
+      el.triggerEventHandler('click', clickEvent);
+      expect(clickEvent.defaultPrevented).toBe(true);
     });
   });
 });
