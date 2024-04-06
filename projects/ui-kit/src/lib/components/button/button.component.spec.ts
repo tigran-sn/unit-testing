@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ButtonComponent } from './button.component';
 import { ButtonModule } from './button.module';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BUTTON_CLASSES } from './button.component';
 
@@ -93,6 +93,51 @@ describe('ButtonComponent', () => {
       });
       el.triggerEventHandler('click', clickEvent);
       expect(clickEvent.defaultPrevented).toBe(true);
+    });
+  });
+});
+
+describe('ButtonComponent (with TestHost)', () => {
+  @Component({
+    template: ` <button [loading]="loading" dfButton></button> `,
+  })
+  class ButtonTestHost {
+    loading = false;
+  }
+
+  let fixture: ComponentFixture<ButtonTestHost>;
+  let buttonDebugEl: DebugElement;
+  let buttonEl: HTMLElement;
+  let hostComponent: ButtonTestHost;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ButtonModule],
+      declarations: [ButtonTestHost],
+    });
+    fixture = TestBed.createComponent(ButtonTestHost);
+    buttonDebugEl = fixture.debugElement.query(By.directive(ButtonComponent));
+    buttonEl = buttonDebugEl.nativeElement;
+    hostComponent = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  describe('ButtonComponent appearance', () => {
+    it('should have solid appearance by default', () => {
+      expect(buttonEl.classList.contains(BUTTON_CLASSES.solid)).toBe(true);
+    });
+  });
+
+  describe('ButtonComponent loading state', () => {
+    it('should show loader icon on "loading" state', () => {
+      hostComponent.loading = true;
+      fixture.detectChanges();
+      let loader = buttonDebugEl.query(By.css('[data-testingId="loader"]'));
+      expect(loader).not.toBeNull();
+
+      hostComponent.loading = false;
+      fixture.detectChanges();
+      loader = buttonDebugEl.query(By.css('[data-testingId="loader"]'));
+      expect(loader).toBeNull();
     });
   });
 });
