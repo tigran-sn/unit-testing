@@ -13,7 +13,7 @@ import { HasTabIndexDirective } from '../../directives/has-tab-index/has-tab-ind
   standalone: true,
   imports: [NgIf],
   template: `
-    <span class="chip-text">
+    <span data-testingId="chip-text" class="chip-text">
       <ng-content></ng-content>
     </span>
     <i (click)="onClick()" *ngIf="removable" class="chip-remove-icon"></i>
