@@ -9,6 +9,24 @@ describe('Chip Component', () => {
     const chip = fixture.componentInstance;
     expect(chip).toBeTruthy();
   });
+  it('should emit event if remove icon is clicked', () => {
+    let expectedValue: any;
+    const fixture = TestBed.createComponent(ChipComponent);
+    fixture.componentRef.setInput('removable', true);
+    fixture.componentInstance.removed.subscribe(
+      (chip: any) => (expectedValue = chip)
+    );
+
+    fixture.detectChanges();
+
+    const removeIcon = fixture.debugElement.query(
+      By.css('[data-testingId="remove"]')
+    );
+
+    removeIcon.triggerEventHandler('click');
+
+    expect(expectedValue).toBe(fixture.componentInstance);
+  });
 });
 
 function setup() {
