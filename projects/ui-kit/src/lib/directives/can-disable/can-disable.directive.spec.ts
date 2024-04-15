@@ -23,6 +23,7 @@ describe('CanDisableDirective', () => {
     const dblclickEvent = new PointerEvent('dblclick', {
       cancelable: true,
     });
+    linkDebugEl.triggerEventHandler('dblclick', dblclickEvent);
     expect(dblclickEvent.defaultPrevented).toBe(true);
   });
 });
